@@ -1,0 +1,7 @@
+report_id,url,scan_timestamp,status,response_time,page_size,type,severity,confidence,content_preview,position,context,error_message
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,credit_card,critical,0.8,4532-1234-5678-9012,171,passe: secret123</p> <p>Numéro de carte: 4532-1234**-5678-9012</p> <p>T**éléphone: +33 1 23 45 67 89,
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,password,critical,1.0,"""mySecretPassword123!"";",363,"apiKey = ""sk-1234567890abcdef""; var dbPassword = ""**mySecretPassword123!""; </script> <**/body> </htm",
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,ip_address,low,0.39999999999999997,192.168.1.100,262,"one: +33 1 23 45 67 89</p> <p>Adresse IP: 192.168.**1.100</p> <sc**ript> var apiKey = ""sk",
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,base64_potential,low,0.7999999999999999,1234567890abcdef,326,"/p> <script> var apiKey = ""sk-1234567890abcdef""; v**ar dbPassword = **""mySecretPassword1",
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,base64_potential,low,0.7,mySecretPassword,375,"-1234567890abcdef""; var dbPassword = ""mySecretPass**word123!""; </scr**ipt> </body> </html>",
+041d36bc,http://demo.onion,2025-09-17T19:04:09.542712,success,0.5,12,email,medium,0.3,admin@example.com,82,h1>Page de test</h1> <p>Email de contact: admin@ex**ample.com</p> <p>**Mot de passe: secret123</p>,

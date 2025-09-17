@@ -128,6 +128,23 @@ class DarkCrawlerLogger:
         self.alert_history: List[LogEntry] = []
         self.max_history = 1000
     
+    # Méthodes de compatibilité avec l'interface standard de logging
+    def info(self, message: str, *args, **kwargs):
+        """Méthode info compatible avec logging standard"""
+        self.log_info(message, *args, **kwargs)
+    
+    def error(self, message: str, *args, **kwargs):
+        """Méthode error compatible avec logging standard"""
+        self.log_error(message, *args, **kwargs)
+    
+    def warning(self, message: str, *args, **kwargs):
+        """Méthode warning compatible avec logging standard"""
+        self.log_warning(message, *args, **kwargs)
+    
+    def debug(self, message: str, *args, **kwargs):
+        """Méthode debug compatible avec logging standard"""
+        self.log_debug(message, *args, **kwargs)
+    
     def _setup_handlers(self):
         """Configure les handlers de logging"""
         
@@ -673,3 +690,7 @@ if __name__ == "__main__":
     print(f"✅ Alertes récentes: {len(recent)}")
     
     print("✅ Test terminé - Vérifiez le dossier 'logs' pour les fichiers générés")
+
+
+# Instance globale du logger
+logger = DarkCrawlerLogger()

@@ -1,0 +1,20 @@
+# Fichier de test pour DarkCrawler
+# URLs d'exemple pour tester le système (remplacez par de vraies URLs .onion)
+
+# Sites de test (ces URLs sont fictives - remplacez par de vraies URLs .onion)
+http://example.onion
+http://test.onion
+http://demo.onion
+
+# Pour tester avec des sites réels, ajoutez des URLs .onion valides ici
+# Attention: Utilisez uniquement des sites légaux et autorisés
+
+# Exemples de sites de test publics (si disponibles):
+# http://3g2upl4pq6kufc4m.onion  # DuckDuckGo (exemple)
+# http://facebookcorewwwi.onion  # Facebook (exemple)
+
+# IMPORTANT: 
+# - Assurez-vous que Tor est installé et en cours d'exécution
+# - Utilisez uniquement des sites légaux
+# - Respectez les conditions d'utilisation des sites
+# - Ce fichier est à des fins de test uniquement

@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-17T19:00:29.346367",
+    "crawler_version": "1.0.0",
+    "total_sites_scanned": 1,
+    "total_leaks_found": 6,
+    "scan_duration": 1.0,
+    "report_id": "e9f8ecc6"
+  },
+  "statistics": {
+    "total_sites_scanned": 1,
+    "total_leaks_found": 6,
+    "successful_scans": 1,
+    "failed_scans": 0,
+    "severity_breakdown": {
+      "critical": 2,
+      "high": 0,
+      "medium": 1,
+      "low": 3,
+      "info": 0
+    },
+    "average_response_time": 0.5
+  },
+  "scan_results": [
+    {
+      "url": "http://demo.onion",
+      "scan_timestamp": "2025-09-17T19:00:29.346513",
+      "status": "success",
+      "response_time": 0.5,
+      "page_size": 12,
+      "error_message": null,
+      "leaks": [
+        {
+          "type": "credit_card",
+          "value": "4532-1234-5678-9012",
+          "context": "passe: secret123</p> <p>Numéro de carte: 4532-1234**-5678-9012</p> <p>T**éléphone: +33 1 23 45 67 89</p>",
+          "severity": "critical",
+          "confidence": 0.8,
+          "position": 171,
+          "timestamp": "2025-09-17T19:00:29.345071",
+          "source_url": "http://demo.onion"
+        },
+        {
+          "type": "password",
+          "value": "\"mySecretPassword123!\";",
+          "context": "apiKey = \"sk-1234567890abcdef\"; var dbPassword = \"**mySecretPassword123!\"; </script> <**/body> </html>",
+          "severity": "critical",
+          "confidence": 1.0,
+          "position": 363,
+          "timestamp": "2025-09-17T19:00:29.345040",
+          "source_url": "http://demo.onion"
+        },
+        {
+          "type": "ip_address",
+          "value": "192.168.1.100",
+          "context": "one: +33 1 23 45 67 89</p> <p>Adresse IP: 192.168.**1.100</p> <sc**ript> var apiKey = \"sk",
+          "severity": "low",
+          "confidence": 0.39999999999999997,
+          "position": 262,
+          "timestamp": "2025-09-17T19:00:29.345123",
+          "source_url": "http://demo.onion"
+        },
+        {
+          "type": "base64_potential",
+          "value": "1234567890abcdef",
+          "context": "/p> <script> var apiKey = \"sk-1234567890abcdef\"; v**ar dbPassword = **\"mySecretPassword1",
+          "severity": "low",
+          "confidence": 0.7999999999999999,
+          "position": 326,
+          "timestamp": "2025-09-17T19:00:29.345914",
+          "source_url": "http://demo.onion"
+        },
+        {
+          "type": "base64_potential",
+          "value": "mySecretPassword",
+          "context": "-1234567890abcdef\"; var dbPassword = \"mySecretPass**word123!\"; </scr**ipt> </body> </html>",
+          "severity": "low",
+          "confidence": 0.7,
+          "position": 375,
+          "timestamp": "2025-09-17T19:00:29.345929",
+          "source_url": "http://demo.onion"
+        },
+        {
+          "type": "email",
+          "value": "admin@example.com",
+          "context": "h1>Page de test</h1> <p>Email de contact: admin@ex**ample.com</p> <p>**Mot de passe: secret123</p>",
+          "severity": "medium",
+          "confidence": 0.3,
+          "position": 82,
+          "timestamp": "2025-09-17T19:00:29.345002",
+          "source_url": "http://demo.onion"
+        }
+      ]
+    }
+  ]
+}

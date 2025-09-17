@@ -319,7 +319,7 @@ class DarkCrawler:
                 min_severity = self.config['alerts']['console']['min_severity']
                 for leak in leaks:
                     if self._should_alert(leak.severity.value, min_severity):
-                        logger.alert(f"🚨 Fuite détectée sur {url}: {leak.leak_type} - {leak.content[:50]}...")
+                        logger.alert(f"🚨 Fuite détectée sur {url}: {leak.type} - {leak.value[:50]}...")
             
             # Alerte email
             if self.email_sender and leaks:

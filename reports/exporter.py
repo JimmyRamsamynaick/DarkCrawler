@@ -520,11 +520,11 @@ if __name__ == "__main__":
     # Données de test
     test_leaks = [
         LeakDetection(
-            leak_type="email",
+            type="email",
             content="admin@company.com",
             severity=SeverityLevel.HIGH,
             confidence=0.95,
-            line_number=42
+            position=42
         )
     ]
     

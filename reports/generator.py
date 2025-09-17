@@ -13,7 +13,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 import hashlib
 
-from ..crawler.detector import LeakDetection, SeverityLevel
+from crawler.detector import LeakDetection, SeverityLevel
 
 
 @dataclass
@@ -205,10 +205,10 @@ class ReportGenerator:
                 
                 for j, leak in enumerate(result.leaks, 1):
                     emoji = self._get_severity_emoji(leak.severity.value)
-                    md_content += f"  {j}. {emoji} **{leak.leak_type}** ({leak.severity.value})\n"
-                    md_content += f"     - Contenu: `{leak.content[:100]}{'...' if len(leak.content) > 100 else ''}`\n"
+                    md_content += f"  {j}. {emoji} **{leak.type}** ({leak.severity.value})\n"
+                    md_content += f"     - Contenu: `{leak.value[:100]}{'...' if len(leak.value) > 100 else ''}`\n"
                     md_content += f"     - Confiance: {leak.confidence:.2f}\n"
-                    md_content += f"     - Position: ligne {leak.line_number}\n\n"
+                    md_content += f"     - Position: ligne {leak.position}\n\n"
             else:
                 md_content += "- **Fuites détectées**: Aucune\n\n"
         
@@ -238,8 +238,8 @@ class ReportGenerator:
         with open(filepath, 'w', newline='', encoding='utf-8') as csvfile:
             fieldnames = [
                 'report_id', 'url', 'scan_timestamp', 'status', 'response_time',
-                'page_size', 'leak_type', 'severity', 'confidence', 'content_preview',
-                'line_number', 'context', 'error_message'
+                'page_size', 'type', 'severity', 'confidence', 'content_preview',
+                'position', 'context', 'error_message'
             ]
             
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -255,11 +255,11 @@ class ReportGenerator:
                             'status': result.status,
                             'response_time': result.response_time,
                             'page_size': result.page_size,
-                            'leak_type': leak.leak_type,
+                            'type': leak.type,
                             'severity': leak.severity.value,
                             'confidence': leak.confidence,
-                            'content_preview': leak.content[:200],
-                            'line_number': leak.line_number,
+                            'content_preview': leak.value[:200],
+                            'position': leak.position,
                             'context': leak.context[:100] if leak.context else '',
                             'error_message': result.error_message
                         })
@@ -272,11 +272,11 @@ class ReportGenerator:
                         'status': result.status,
                         'response_time': result.response_time,
                         'page_size': result.page_size,
-                        'leak_type': '',
+                        'type': '',
                         'severity': '',
                         'confidence': '',
                         'content_preview': '',
-                        'line_number': '',
+                        'position': '',
                         'context': '',
                         'error_message': result.error_message
                     })
@@ -284,16 +284,16 @@ class ReportGenerator:
         return str(filepath)
     
     def _leak_to_dict(self, leak: LeakDetection) -> Dict[str, Any]:
-        """Convertit une détection de fuite en dictionnaire"""
+        """Convertit une fuite en dictionnaire"""
         return {
-            'leak_type': leak.leak_type,
-            'content': leak.content,
-            'severity': leak.severity.value,
-            'confidence': leak.confidence,
-            'line_number': leak.line_number,
+            'type': leak.type,
+            'value': leak.value,
             'context': leak.context,
-            'timestamp': leak.timestamp,
-            'metadata': leak.metadata
+            'severity': leak.severity.value if hasattr(leak.severity, 'value') else str(leak.severity),
+            'confidence': leak.confidence,
+            'position': leak.position,
+            'timestamp': leak.timestamp.isoformat() if hasattr(leak.timestamp, 'isoformat') else str(leak.timestamp),
+            'source_url': leak.source_url
         }
     
     def _calculate_severity_stats(self, scan_results: List[ScanResult]) -> Dict[str, int]:
@@ -348,20 +348,24 @@ if __name__ == "__main__":
     # Création de données de test
     test_leaks = [
         LeakDetection(
-            leak_type="email",
-            content="test@example.com",
+            type="email",
+            value="test@example.com",
+            context="Contact: test@example.com for support",
             severity=SeverityLevel.MEDIUM,
             confidence=0.95,
-            line_number=42,
-            context="Contact: test@example.com for support"
+            position=42,
+            timestamp=datetime.now(),
+            source_url="http://example.onion"
         ),
         LeakDetection(
-            leak_type="password",
-            content="password123",
+            type="password",
+            value="password123",
+            context="password: password123",
             severity=SeverityLevel.HIGH,
             confidence=0.88,
-            line_number=156,
-            context="password: password123"
+            position=156,
+            timestamp=datetime.now(),
+            source_url="http://example.onion"
         )
     ]
     
