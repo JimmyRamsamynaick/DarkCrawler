@@ -1,0 +1,125 @@
+{
+  "crawler": {
+    "max_pages": 50,
+    "delay_between_requests": 3.0,
+    "timeout": 45,
+    "max_retries": 3,
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0",
+      "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0"
+    ],
+    "respect_robots_txt": true,
+    "follow_redirects": true,
+    "max_redirect_count": 5
+  },
+  "detection": {
+    "keywords_file": "config/keywords.json",
+    "min_confidence": 0.75,
+    "max_content_length": 2000000,
+    "enable_context_analysis": true,
+    "context_window": 100
+  },
+  "alerts": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "use_tls": true,
+      "username": "",
+      "password": "",
+      "recipients": [
+        "security@company.com"
+      ],
+      "subject_prefix": "[DarkCrawler Alert]",
+      "rate_limit": {
+        "max_per_hour": 10,
+        "max_per_day": 50
+      }
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "",
+      "type": "slack",
+      "retry_count": 3,
+      "retry_delay": 5,
+      "timeout": 30
+    },
+    "console": {
+      "enabled": true,
+      "min_severity": "medium",
+      "colored_output": true,
+      "show_context": true
+    },
+    "file": {
+      "enabled": true,
+      "log_file": "logs/alerts.log",
+      "max_file_size": "10MB",
+      "backup_count": 5
+    }
+  },
+  "reports": {
+    "formats": [
+      "json",
+      "markdown",
+      "csv"
+    ],
+    "output_dir": "reports",
+    "auto_export": {
+      "enabled": true,
+      "archive": true,
+      "archive_format": "zip",
+      "cloud_upload": false,
+      "cleanup_old_reports": true,
+      "retention_days": 30
+    },
+    "executive_summary": {
+      "enabled": true,
+      "include_charts": true,
+      "include_recommendations": true
+    }
+  },
+  "tor": {
+    "proxy_host": "127.0.0.1",
+    "proxy_port": 9050,
+    "control_port": 9051,
+    "auto_start": true,
+    "new_identity_interval": 300,
+    "circuit_timeout": 60,
+    "max_circuit_dirtiness": 600,
+    "verify_connection": true
+  },
+  "performance": {
+    "max_concurrent_requests": 1,
+    "request_pool_size": 5,
+    "memory_limit": "500MB",
+    "enable_caching": false,
+    "cache_size": "100MB"
+  },
+  "security": {
+    "verify_ssl": false,
+    "allow_redirects_to_clearnet": false,
+    "block_javascript": true,
+    "block_images": true,
+    "block_css": true,
+    "user_agent_rotation": true,
+    "header_randomization": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/darkcrawler.log",
+    "max_file_size": "50MB",
+    "backup_count": 10,
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "enable_debug": false,
+    "log_requests": true,
+    "log_responses": false
+  },
+  "database": {
+    "enabled": false,
+    "type": "sqlite",
+    "path": "data/darkcrawler.db",
+    "backup_interval": 3600,
+    "cleanup_interval": 86400
+  }
+}
