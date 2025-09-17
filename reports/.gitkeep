@@ -1,0 +1,2 @@
+# Ce fichier maintient le dossier reports dans Git
+# Les rapports générés seront ignorés par .gitignore pour des raisons de sécurité
